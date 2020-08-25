@@ -6,9 +6,10 @@ Run Squeezelite player on your home assistant system
 
 ## About
 
-The Home Assistant Squeezelite add-on allows you to run a Squeezelite player local on your home assistant machine.
-Squeezelite requires a Squeezebox server in your network.
-Note: This plugin does **not** install Squeezebox server
+The Home Assistant Squeezelite add-on allows you to run a Squeezelite player local on your home assistant machine. \
+Squeezelite requires a Squeezebox server in your network to be seen, not included. \
+Please visit [Logitech](https://mysqueezebox.com/download) to install the server (if required).
+
 
 ![Squeezelite][screenshot]
 
