@@ -15,5 +15,5 @@ Please visit [Logitech](https://mysqueezebox.com/download) to install the server
 
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
-[release-shield]: https://img.shields.io/badge/version-v1.0-blue.svg
+[release-shield]: https://img.shields.io/badge/version-v1.1-blue.svg
 [screenshot]: https://github.com/large/hassio-addons/raw/master/squeezelite/screenshot.png
