@@ -1,8 +1,12 @@
-# 🥧 Squeezelite player standalone 🥧
+![Supports aarch64 Architecture][aarch64-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armhf Architecture][armhf-shield] ![Supports armv7 Architecture][armv7-shield] ![Supports i386 Architecture][i386-shield]
+
+# 📻 Squeezelite player standalone 📻
 
 ## 📄 Description
 Runs the [Squeezelite](https://github.com/ralph-irving/squeezelite) player as standalone on home assistant. \
-Note that the player only works on x86/x64 systems (Like a NUC or normal PCs, not Raspberrys etc) since my scripting skills are limited. \
+Squeezelite requires a [Squeezebox server](https://mysqueezebox.com/download) running in the network. This plugin does **not** install Squeezebox server! 
+
+Note that the player only works on x86/x64 systems (Like a NUC or normal PCs, not Raspberrys etc) since my scripting skills are not advanced enough. \
 Plugin rely on compiled version from [here](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
 
 ## 💵 Support me:  
@@ -20,7 +24,7 @@ Plugin rely on compiled version from [here](https://sourceforge.net/projects/lms
 2. Update the config with your own name and output
 3. Check add-on logs for possible outputs and supported parameters.
 
-## Config parameters
+## 🔧 Config parameters
 Following parameters are available and must be set: \
 ```name```: Displayname for the player (only english ascii supported) \
 ```output```: Audio output (where you want the music to play). Please check the log after startup for a list of possible outputs \
@@ -37,6 +41,8 @@ Default config is: \
 
 ## 🧷 Urls
 [Add-on link](https://github.com/large/hassio-addons/tree/master/squeezelite)
+[Squeezelite](https://github.com/ralph-irving/squeezelite)
+[Squeezebox server](https://mysqueezebox.com/download)
 
 ## 👪 Credits
 Developed by [Lars Werner](https://github.com/large)
@@ -56,3 +62,9 @@ Developed by [Lars Werner](https://github.com/large)
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+[aarch64-shield]: https://img.shields.io/badge/aarch64-no-red.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg
+[i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
