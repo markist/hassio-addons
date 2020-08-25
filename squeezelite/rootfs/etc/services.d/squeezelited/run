@@ -1,0 +1,44 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Home Assistant Community Add-on: Squeezelite
+# Runs squeezelite with given parameters
+# ==============================================================================
+declare -a options
+declare name
+declare server
+declare output
+declare clientmac
+
+bashio::log.info 'Starting the Squeezelite client daemon...'
+
+#Are we running in debug mode?
+if bashio::debug; then
+  options+=(-d all=debug)
+else
+  options+=(-d all=info)
+fi
+
+#If a server is set, update the options (autodiscover if not)
+if bashio::config.has_value 'server'; then
+  server=$(bashio::config 'server')
+  options+=( -s ${server})
+fi
+
+#Set variables from config
+name=$(bashio::config 'name')
+clientmac=$(bashio::config 'clientmac')
+output=$(bashio::config 'output')
+
+#FYI for launch options
+bashio::log.info 'name = ' ${name}
+bashio::log.info 'clientmac = ' ${clientmac}
+bashio::log.info 'sounddevice = ' ${output}
+bashio::log.info 'Extra options = ' ${options[@]}
+
+#Show possible outputs (easier to change outputs)
+bashio::log.info 'Squeezelite possible outputs...'  
+/usr/bin/squeezelite -l
+
+#Start the squeezelite client
+bashio::log.info 'Starting squeezelite client...'  
+/usr/bin/squeezelite -n "$name" -o "$output" -m "$clientmac" ${options[@]}

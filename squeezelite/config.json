@@ -1,0 +1,27 @@
+{
+  "name": "Squeezelite",
+  "version": "dev",
+  "slug": "squeezelite",
+  "description": "Squeezelite client standalone on home assistant",
+  "url": "https://github.com/hassio-addons/addon-squeezelite",
+  "startup": "services",
+  "arch": ["amd64", "i386"],
+  "map": ["config"],
+  "boot": "auto",
+  "hassio_api": true,
+  "hassio_role": "default",
+  "host_network": true,
+  "audio": true,
+  "options": {
+    "name": "Home Assistant Squeezelite",
+    "output": "default",
+    "clientmac": "0A:0B:0C:0D:0E:0F"
+  },
+  "schema": {
+    "log_level": "list(trace|debug|info|notice|warning|error|fatal)?",
+    "name": "str",
+	"server": "str?",
+	"output": "str",
+	"clientmac": "str"
+  }
+}
