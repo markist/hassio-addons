@@ -1,29 +1,45 @@
-# 🥧 Squeezelite client 🥧
+# 🥧 Squeezelite player standalone 🥧
 
 ## 📄 Description
-Runs the Squeezelite player as standalone on home assistant 
+Runs the [Squeezelite](https://github.com/ralph-irving/squeezelite) player as standalone on home assistant.
+Note that the player only works on x86/x64 systems (Like a NUC or normal PCs, not Raspberrys etc) since my scripting skills are limited.
+Plugin rely on compiled version from [here](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
 
 ## 💵 Support me:  
-  You can thank me for developing any of my projects, provide financial support for developing new projects and buy me a small cup of coffee.☕ \
-  Just support me on these platforms:
-  * ![](https://github.com/large/raw/master/assets/imgs/paypal_logo.jpg) [**PayPal**](https://paypal.me/mrlarswerner)
+  You can thank me for developing any of my projects by buy me a cup of coffee.☕ \
+  ![](https://github.com/large/raw/master/assets/imgs/paypal_logo.jpg) [**PayPal**](https://paypal.me/mrlarswerner)
 
 ## 🏷 Install
 1. Add this url to your hass.io addons repos: \
 `https://github.com/large/hassio-addons`
 2. Update addons list.
-3. Install this add-on.
+3. Install this Squeezelite.
 
 ## 🧰 How to use
 1. Install add-on.
 2. Update the config with your own name and output
 3. Check add-on logs for possible outputs and supported parameters.
 
+## Config parameters
+Following parameters are available and must be set:
+```name```: Displayname for the player (only english ascii supported)
+```output```: Audio output (where you want the music to play). Please check the log after startup for a list of possible outputs
+```clientmac```: A "dummy mac" to make the player unique. There should not be 2 players in a squeezeserver with equial mac, that mess things up.
+
+Optional:
+```server```: Host or IP to link this squeezelite player. If not set autodiscover will be used and join the first server it sees.
+```log_level```: Only debug is available here (only used during development)
+
+Default config is:
+```name```: Home Assistant Squeezelite
+```output```: default
+```clientmac```: '0A:0B:0C:0D:0E:0F'
+
 ## 🧷 Urls
 [Add-on link](https://github.com/large/hassio-addons/tree/master/squeezelite)
 
 ## 👪 Credits
-Developed by [Anodev](https://github.com/large)
+Developed by [Lars Werner](https://github.com/large)
 
 ## 🎓 License
    [Apache License 2.0](https://github.com/large/hassio-addons/blob/master/squeezelite/LICENSE.md)

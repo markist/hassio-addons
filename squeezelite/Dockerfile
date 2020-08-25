@@ -54,7 +54,7 @@ LABEL \
     org.opencontainers.image.licenses="APACHE" \
     org.opencontainers.image.url="https://lars.werner.no/" \
     org.opencontainers.image.source="https://github.com/large/hassio-addons" \
-    org.opencontainers.image.documentation="https://github.com/large/hassio-addons/squeezelite/blob/master/README.md" \
+    org.opencontainers.image.documentation="https://github.com/large/hassio-addons/blob/master/squeezelite/README.md" \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version=${BUILD_VERSION}
