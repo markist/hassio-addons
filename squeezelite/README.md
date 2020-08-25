@@ -25,19 +25,30 @@ Plugin rely on compiled version from [here](https://sourceforge.net/projects/lms
 3. Check add-on logs for possible outputs and supported parameters.
 
 ## 🔧 Config parameters
-Following parameters are available and must be set: \
-```name```: Displayname for the player (only english ascii supported) \
-```output```: Audio output (where you want the music to play). Please check the log after startup for a list of possible outputs \
-```clientmac```: A "dummy mac" to make the player unique. There should not be 2 players in a squeezeserver with equial mac, that mess things up. 
 
-Optional: \
-```server```: Host or IP to link this squeezelite player. If not set autodiscover will be used and join the first server it sees. \
-```log_level```: Only debug is available here (only used during development) 
+**Note**: _Remember to restart the add-on when the configuration is changed._
 
-Default config is: \
-```name```: Home Assistant Squeezelite \
-```output```: default \
-```clientmac```: '0A:0B:0C:0D:0E:0F' 
+Default config and these are required to be set:
+```yaml
+name: Home Assistant Squeezelite
+output: default 
+clientmac: '0A:0B:0C:0D:0E:0F' 
+```
+### Option: `name`
+Displayname for the player (only English Ascii chars are supported)
+
+### Option: `output`
+Audio output (where you want the music to play). Please check the log after startup for a list of possible outputs \
+
+### Option: `clientmac`
+A "dummy mac" to make the player unique. \
+There should not be 2 players in a squeezeserver with equial mac, that mess things up. 
+
+### Option (optional): `server`
+Host or IP to link this squeezelite player. If not set autodiscover will be used and join the first server it sees. \
+
+### Option (optional): `log_level`
+Only "debug" is valid  here (only used during development) 
 
 ## 🧷 Urls
 [Add-on link](https://github.com/large/hassio-addons/tree/master/squeezelite)
