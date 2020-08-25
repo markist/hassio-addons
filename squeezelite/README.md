@@ -1,7 +1,7 @@
 # 🥧 Squeezelite player standalone 🥧
 
 ## 📄 Description
-Runs the [Squeezelite](https://github.com/ralph-irving/squeezelite) player as standalone on home assistant.
+Runs the [Squeezelite](https://github.com/ralph-irving/squeezelite) player as standalone on home assistant. \
 Note that the player only works on x86/x64 systems (Like a NUC or normal PCs, not Raspberrys etc) since my scripting skills are limited.
 Plugin rely on compiled version from [here](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
 
@@ -21,19 +21,19 @@ Plugin rely on compiled version from [here](https://sourceforge.net/projects/lms
 3. Check add-on logs for possible outputs and supported parameters.
 
 ## Config parameters
-Following parameters are available and must be set:
-```name```: Displayname for the player (only english ascii supported)
-```output```: Audio output (where you want the music to play). Please check the log after startup for a list of possible outputs
-```clientmac```: A "dummy mac" to make the player unique. There should not be 2 players in a squeezeserver with equial mac, that mess things up.
+Following parameters are available and must be set: \
+```name```: Displayname for the player (only english ascii supported) \
+```output```: Audio output (where you want the music to play). Please check the log after startup for a list of possible outputs \
+```clientmac```: A "dummy mac" to make the player unique. There should not be 2 players in a squeezeserver with equial mac, that mess things up. \
 
-Optional:
-```server```: Host or IP to link this squeezelite player. If not set autodiscover will be used and join the first server it sees.
-```log_level```: Only debug is available here (only used during development)
+Optional: \
+```server```: Host or IP to link this squeezelite player. If not set autodiscover will be used and join the first server it sees. \
+```log_level```: Only debug is available here (only used during development) \
 
-Default config is:
-```name```: Home Assistant Squeezelite
-```output```: default
-```clientmac```: '0A:0B:0C:0D:0E:0F'
+Default config is: \
+```name```: Home Assistant Squeezelite \
+```output```: default \
+```clientmac```: '0A:0B:0C:0D:0E:0F' \
 
 ## 🧷 Urls
 [Add-on link](https://github.com/large/hassio-addons/tree/master/squeezelite)
