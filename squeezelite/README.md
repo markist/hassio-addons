@@ -1,6 +1,6 @@
 # Home Assistant Community Add-on: Squeezelite player standalone
 
-[![Release][release-shield]] ![Project Stage][project-stage-shield] ![Project Maintenance][maintenance-shield]
+![Release][release-shield] ![Project Stage][project-stage-shield] ![Project Maintenance][maintenance-shield]
 
 Run Squeezelite player on your home assistant system
 
