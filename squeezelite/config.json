@@ -1,11 +1,11 @@
 {
   "name": "Squeezelite",
-  "version": "1.1",
+  "version": "1.2b",
   "slug": "squeezelite",
   "description": "Squeezelite client standalone on home assistant",
   "url": "https://github.com/hassio-addons/addon-squeezelite",
   "startup": "services",
-  "arch": ["amd64", "i386"],
+  "arch": ["aarch64", "armv7", "amd64", "i386"],
   "map": ["config"],
   "boot": "auto",
   "hassio_api": true,

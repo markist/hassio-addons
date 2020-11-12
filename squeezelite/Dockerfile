@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base:5.2.1
+ARG BUILD_FROM=hassioaddons/ubuntu-base:5.2.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,34 +11,46 @@ ENV LC_ALL="C.UTF-8"
 ENV LANG="en_US.UTF-8" 
 ENV LANGUAGE="en_US.UTF-8" 
 
-# Use baseimage-docker's init system.
-#CMD ["/sbin/my_init"]
-
-# Upgrading the operating system inside the container
-RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
-
-# Install Squeezelite
-RUN apt-get -qq -y update && \
-    apt-get -qq -y install alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2 curl && \
-	curl -o squeezelite.tar.gz -L https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/squeezelite-1.9.7.1270-x86_64.tar.gz/download && \
-	tar -xvzf squeezelite.tar.gz && \
-    mv squeezelite /usr/bin && \
-    chmod +x /usr/bin/squeezelite && \
-	rm -f LICENSE.txt && \
-	rm -f squeezelite.tar.gz
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Copy root filesystem
-COPY rootfs /
-
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
 
+# Upgrading the operating system inside the container
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+
+# Install Squeezelite
+RUN apt-get -qq -y update && \
+	if [ "${BUILD_ARCH}" = "i386" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
+	if [ "${BUILD_ARCH}" = "aarch64" ]; then PACKAGES="libasound2-dev libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev wiringpi"; fi && \
+	if [ "${BUILD_ARCH}" = "amd64" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
+	if [ "${BUILD_ARCH}" = "armv7" ]; then PACKAGES="libasound2-dev libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev wiringpi"; fi && \
+    apt-get -qq -y install ${PACKAGES}
+	
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+# Copy root filesystem
+COPY rootfs /
+
+#Copy Squeezelite into temporary directory
+RUN rm -fr /tmp/squeezelitetemp && \
+	mkdir -p /tmp/squeezelitetemp
+	
+COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp
+
+#Extract file and copy it
+RUN	cd /tmp/squeezelitetemp && \
+	ls /tmp/squeezelitetemp && \
+	tar -xvzf /tmp/squeezelitetemp/*.tar.gz && \
+	echo "Second time" && \
+	ls /tmp/squeezelitetemp && \
+	mv /tmp/squeezelitetemp/squeezelite /usr/bin && \
+	chmod +x /usr/bin/squeezelite && \
+	rm -fr /tmp/squeezelitetemp
+	
 # Labels
 LABEL \
     io.hass.name="Squeezelite" \
