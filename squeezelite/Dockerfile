@@ -23,22 +23,22 @@ RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 # Install Squeezelite
 RUN apt-get -qq -y update && \
 	if [ "${BUILD_ARCH}" = "i386" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
-	if [ "${BUILD_ARCH}" = "aarch64" ]; then PACKAGES="libasound2-dev libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev wiringpi"; fi && \
+	if [ "${BUILD_ARCH}" = "aarch64" ]; then PACKAGES="libasound2-dev libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev"; fi && \
 	if [ "${BUILD_ARCH}" = "amd64" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
-	if [ "${BUILD_ARCH}" = "armv7" ]; then PACKAGES="libasound2-dev libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev wiringpi"; fi && \
+	if [ "${BUILD_ARCH}" = "armv7" ]; then PACKAGES="libasound2-dev libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev"; fi && \
     apt-get -qq -y install ${PACKAGES}
 	
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
 # Copy root filesystem
 COPY rootfs /
 
-#Copy Squeezelite into temporary directory
+#Create temporary directory
 RUN rm -fr /tmp/squeezelitetemp && \
 	mkdir -p /tmp/squeezelitetemp
-	
+
+#Copy Squeezelite into temporary directory
 COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp
 
 #Extract file and copy it
