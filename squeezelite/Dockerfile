@@ -45,7 +45,7 @@ COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp/
 RUN	cd /tmp/squeezelitetemp && \
 	tar -xvzf /tmp/squeezelitetemp/*.tar.gz && \
 	mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
-	chmod +x /usr/local/bin/squeezelite && \
+	chmod a+x /usr/local/bin/squeezelite && \
 	cd / && \
 	rm -fr /tmp/squeezelitetemp
 	

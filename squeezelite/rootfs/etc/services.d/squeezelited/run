@@ -35,6 +35,10 @@ bashio::log.info 'clientmac = ' ${clientmac}
 bashio::log.info 'sounddevice = ' ${output}
 bashio::log.info 'Extra options = ' ${options[@]}
 
+#Temporary check for squeezelite
+bashio::log.info 'Check that squeezelite exists'  
+ls -l /usr/local/bin/squ*
+
 #Show possible outputs (easier to change outputs)
 bashio::log.info 'Squeezelite possible outputs...'  
 /usr/local/bin/squeezelite -l
