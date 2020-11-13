@@ -41,21 +41,13 @@ RUN rm -fr /tmp/squeezelitetemp && \
 #Copy Squeezelite into temporary directory
 COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp/
 
-RUN echo "Build ARCH is ${BUILD_ARCH}"
-
 #Extract file and copy it
 RUN	cd /tmp/squeezelitetemp && \
 	tar -xvzf /tmp/squeezelitetemp/*.tar.gz && \
-	echo "******************** Temp after TAR" && \
-	ls /tmp/squeezelitetemp/ && \
-	echo "******************** Moving files and listing temp" && \
-	mv /tmp/squeezelitetemp/squeezelite /usr/bin/squeezelite && \
-	chmod +x /usr/bin/squeezelite && \
-	ls /tmp/squeezelitetemp/ && \
+	mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
+	chmod +x /usr/local/bin/squeezelite && \
 	cd / && \
-	rm -fr /tmp/squeezelitetemp && \
-	echo "******************** Failing on purpose" && \
-	ls /tmp/squeezelitetemp
+	rm -fr /tmp/squeezelitetemp
 	
 # Labels
 LABEL \
