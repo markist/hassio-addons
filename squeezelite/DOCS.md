@@ -1,4 +1,4 @@
-![Supports aarch64 Architecture][aarch64-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armhf Architecture][armhf-shield] ![Supports armv7 Architecture][armv7-shield] ![Supports i386 Architecture][i386-shield]
+![Supports i386 Architecture][i386-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armhf Architecture][armhf-shield] ![Supports armv7 Architecture][armv7-shield] ![Supports aarch64 Architecture][aarch64-shield] 
 
 # 📻 Squeezelite player standalone 📻
 
@@ -6,8 +6,12 @@
 Runs the [Squeezelite](https://github.com/ralph-irving/squeezelite) player as standalone on home assistant. \
 Squeezelite requires a [Squeezebox server](https://mysqueezebox.com/download) running in the network. This plugin does **not** install Squeezebox server! 
 
-Note that the player only works on x86/x64 systems (Like a NUC or normal PCs, not Raspberrys etc) since my scripting skills are not advanced enough. \
-Plugin rely on compiled version from [here](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
+From version 1.35 archs x86/x64, armv6/7 and ARM64 (aarch64) is supported. Squeezelite-executable for all architetures is included in the add-on. \
+**X86/x64 and ARM64 is verified working** \
+Note that ARM64 (or aarch64) requires glibc 2.29 which is not available at apt, but installed during addon installation.
+
+I would love to hear from RPi1 or RPi2 users is the armv7 version works for you.
+Mail me at lars@werner.no
 
 ## 💵 Support me:  
   You can thank me for developing any of my projects by buy me a cup of coffee.☕ \
@@ -74,8 +78,8 @@ Developed by [Lars Werner](https://github.com/large)
    See the License for the specific language governing permissions and
    limitations under the License.
 
-[aarch64-shield]: https://img.shields.io/badge/aarch64-no-red.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
-[armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
-[armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg
 [i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
