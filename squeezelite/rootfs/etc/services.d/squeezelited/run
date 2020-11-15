@@ -37,8 +37,8 @@ bashio::log.info 'Extra options = ' ${options[@]}
 
 #Show possible outputs (easier to change outputs)
 bashio::log.info 'Squeezelite possible outputs...'  
-/usr/bin/squeezelite -l
+/usr/local/bin/squeezelite -l
 
 #Start the squeezelite client
 bashio::log.info 'Starting squeezelite client...'  
-/usr/bin/squeezelite -n "$name" -o "$output" -m "$clientmac" ${options[@]}
+/usr/local/bin/squeezelite -n "$name" -o "$output" -m "$clientmac" ${options[@]}

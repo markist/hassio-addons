@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base:5.2.1
+ARG BUILD_FROM=hassioaddons/ubuntu-base:5.2.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,33 +11,47 @@ ENV LC_ALL="C.UTF-8"
 ENV LANG="en_US.UTF-8" 
 ENV LANGUAGE="en_US.UTF-8" 
 
-# Use baseimage-docker's init system.
-#CMD ["/sbin/my_init"]
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
 
 # Upgrading the operating system inside the container
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
 # Install Squeezelite
 RUN apt-get -qq -y update && \
-    apt-get -qq -y install alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2 curl && \
-	curl -o squeezelite.tar.gz -L https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/squeezelite-1.9.7.1270-x86_64.tar.gz/download && \
-	tar -xvzf squeezelite.tar.gz && \
-    mv squeezelite /usr/bin && \
-    chmod +x /usr/bin/squeezelite && \
-	rm -f LICENSE.txt && \
-	rm -f squeezelite.tar.gz
-
+	if [ "${BUILD_ARCH}" = "i386" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
+	if [ "${BUILD_ARCH}" = "aarch64" ]; then PACKAGES="libasound2-dev libasound2-plugins libasound2-data libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev libssl-dev libopusfile-dev faad"; fi && \
+	if [ "${BUILD_ARCH}" = "amd64" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
+	if [ "${BUILD_ARCH}" = "armv7" ]; then PACKAGES="libasound2-dev libasound2-plugins libasound2-data libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev libssl-dev libopusfile-dev faad"; fi && \
+    apt-get -qq -y install ${PACKAGES}
+	
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copy root filesystem
 COPY rootfs /
 
-# Build arguments
-ARG BUILD_ARCH
-ARG BUILD_DATE
-ARG BUILD_REF
-ARG BUILD_VERSION
+#Create temporary directory
+RUN rm -fr /tmp/squeezelitetemp && \
+	mkdir -p /tmp/squeezelitetemp
+	
+#Copy Squeezelite into temporary directory
+COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp/
+
+#Ubuntu ARM64 2.29 libc from https://answers.launchpad.net/ubuntu/+source/glibc/2.29-0ubuntu2/+build/16599429
+
+#Extract file and copy it
+RUN	cd /tmp/squeezelitetemp && \
+	tar -xvzf /tmp/squeezelitetemp/*.tar.gz && \
+	mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
+	chmod a+x /usr/local/bin/squeezelite && \
+	chown root:root /usr/local/bin/squeezelite && \
+	if [ "${BUILD_ARCH}" = "aarch64" ]; then dpkg -i libc6_2.29-0ubuntu2_arm64.deb; fi && \
+	cd / && \
+	rm -fr /tmp/squeezelitetemp
 
 # Labels
 LABEL \
