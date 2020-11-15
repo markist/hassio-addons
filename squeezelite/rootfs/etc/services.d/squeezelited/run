@@ -36,8 +36,11 @@ bashio::log.info 'sounddevice = ' ${output}
 bashio::log.info 'Extra options = ' ${options[@]}
 
 #Temporary check for squeezelite
-bashio::log.info 'Check that squeezelite exists'  
-ls -l /usr/local/bin/squ*
+bashio::log.info 'Check that squeezelite exists and user running the service'  
+ls -lh /usr/local/bin/squ*
+whoami
+who
+cat /etc/passwd
 
 #Show possible outputs (easier to change outputs)
 bashio::log.info 'Squeezelite possible outputs...'  
