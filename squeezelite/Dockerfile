@@ -41,17 +41,17 @@ RUN rm -fr /tmp/squeezelitetemp && \
 #Copy Squeezelite into temporary directory
 COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp/
 
+#Ubuntu ARM64 2.29 libc from https://answers.launchpad.net/ubuntu/+source/glibc/2.29-0ubuntu2/+build/16599429
+
 #Extract file and copy it
 RUN	cd /tmp/squeezelitetemp && \
 	tar -xvzf /tmp/squeezelitetemp/*.tar.gz && \
-	echo "User installing:" && \
-	whoami && \
-	who && \
-	echo "All users:" && \
-	cat /etc/passwd && \
 	mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
 	chmod a+x /usr/local/bin/squeezelite && \
 	chown root:root /usr/local/bin/squeezelite && \
+	if [ "${BUILD_ARCH}" = "aarch64" ]; then && \
+	dpkg -i libc6_2.29-0ubuntu2_arm64.deb && \
+	fi && \
 	cd / && \
 	rm -fr /tmp/squeezelitetemp
 
