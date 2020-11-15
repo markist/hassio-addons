@@ -49,9 +49,7 @@ RUN	cd /tmp/squeezelitetemp && \
 	mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
 	chmod a+x /usr/local/bin/squeezelite && \
 	chown root:root /usr/local/bin/squeezelite && \
-	if [ "${BUILD_ARCH}" = "aarch64" ]; then && \
-	dpkg -i libc6_2.29-0ubuntu2_arm64.deb && \
-	fi && \
+	if [ "${BUILD_ARCH}" = "aarch64" ]; then dpkg -i libc6_2.29-0ubuntu2_arm64.deb; fi && \
 	cd / && \
 	rm -fr /tmp/squeezelitetemp
 
