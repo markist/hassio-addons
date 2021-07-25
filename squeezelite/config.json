@@ -1,6 +1,6 @@
 {
   "name": "Squeezelite",
-  "version": "1.36",
+  "version": "1.37",
   "slug": "squeezelite",
   "description": "Squeezelite client standalone on home assistant",
   "url": "https://github.com/hassio-addons/addon-squeezelite",
