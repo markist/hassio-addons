@@ -39,4 +39,4 @@ LABEL \
     org.opencontainers.image.version=${BUILD_VERSION}
 
 
-ENTRYPOINT ["/run-squeezelite.sh"]
+#ENTRYPOINT ["/run-squeezelite.sh"]
