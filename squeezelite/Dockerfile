@@ -1,4 +1,5 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base-armhf:2.3.1
+ARG BUILD_FROM=homeassistant/armhf-base-debian
+#hassioaddons/ubuntu-base-armhf:2.3.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
