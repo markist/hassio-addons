@@ -1,6 +1,6 @@
 {
   "name": "Squeezelite",
-  "version": "1.35",
+  "version": "1.36",
   "slug": "squeezelite",
   "description": "Squeezelite client standalone on home assistant",
   "url": "https://github.com/hassio-addons/addon-squeezelite",
@@ -13,7 +13,7 @@
   "host_network": true,
   "audio": true,
   "options": {
-    "name": "Home Assistant Squeezelite",
+    "name": "Bad Homassistant",
     "output": "default",
     "clientmac": "0A:0B:0C:0D:0E:0F"
   },
