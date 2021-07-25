@@ -4,7 +4,7 @@ ARG BUILD_FROM=homeassistant/armhf-base-debian
 FROM ${BUILD_FROM}
 
 # Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+SHELL ["/bin/sh", "-o", "pipefail", "-c"]
 
 # Set correct environment variables
 ENV DEBIAN_FRONTEND="noninteractive"
