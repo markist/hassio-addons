@@ -7,6 +7,10 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY run-squeezelite.sh /run-squeezelite.sh
 RUN chmod u+x /run-squeezelite.sh
 
+
+# Copy root filesystem
+COPY rootfs /
+
 ENV SQUEEZELITE_AUDIO_DEVICE front:CARD=HM,DEV=0
 ENV SQUEEZELITE_NAME SqueezeLiteBad
 ENV SQUEEZELITE_TIMEOUT 2
