@@ -18,7 +18,7 @@ ARG BUILD_REF
 ARG BUILD_VERSION
 
 # Upgrading the operating system inside the container
-RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+# RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
 # Install Squeezelite
 RUN apt-get -qq -y update && \
