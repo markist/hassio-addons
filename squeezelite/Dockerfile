@@ -33,7 +33,7 @@ RUN apt-get -qq -y update && \
 	if [ "${BUILD_ARCH}" = "aarch64" ]; then PACKAGES="libasound2-dev libasound2-plugins libasound2-data libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev libssl-dev libopusfile-dev faad"; fi && \
 	if [ "${BUILD_ARCH}" = "amd64" ]; then PACKAGES="alsa-base alsa-utils libasound2-data libasound2-dev libasound2-plugins libasound2"; fi && \
 	if [ "${BUILD_ARCH}" = "armv7" ]; then PACKAGES="libasound2-dev libasound2-plugins libasound2-data libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev libssl-dev libopusfile-dev faad"; fi && \
-	if [ "${BUILD_ARCH}" = "armhf" ]; then PACKAGES="libasound2-dev libasound2-plugins libasound2-data libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev libssl-dev libopusfile-dev faad"; fi && \
+	if [ "${BUILD_ARCH}" = "armhf" ]; then PACKAGES="libasound2-dev libasound2-plugins libasound2-data libflac-dev libmad0-dev libvorbis-dev libmpg123-dev libfaad-dev libsox-dev libsoxr-dev libavformat-dev liblirc-dev libssl-dev libopusfile-dev faad squeezelite"; fi && \
     apt-get -qq -y install ${PACKAGES}
 	
 # Clean up APT when done.
@@ -94,40 +94,5 @@ LABEL \
 
 #ENV SQUEEZELITE_SPECIFY_SERVER no
 #ENV SQUEEZELITE_SERVER_PORT server:3483
-
-
-# Set correct environment variables
-#ENV DEBIAN_FRONTEND="noninteractive"
-#ENV LC_ALL="C.UTF-8" 
-#ENV LANG="en_US.UTF-8" 
-#ENV LANGUAGE="en_US.UTF-8" 
-
-# Build arguments
-#ARG BUILD_ARCH
-#ARG BUILD_DATE
-#ARG BUILD_REF
-#ARG BUILD_VERSION
-
-
-# Labels
-#LABEL \
-#    io.hass.name="Squeezelite" \
-#    io.hass.description="Standalone Squeezelite client" \
-##    io.hass.arch="${BUILD_ARCH}" \
- #   io.hass.type="addon" \
- #   io.hass.version=${BUILD_VERSION} \
- #   maintainer="Lars Werner <lars@werner.no>" \
- #   org.opencontainers.image.title="Squeezelite" \
- #   org.opencontainers.image.description="Standalone Squeezelite client" \
- #   org.opencontainers.image.vendor="Lars Werner" \
- #   org.opencontainers.image.authors="Lars Werner <lars@werner.no>" \
- #   org.opencontainers.image.licenses="APACHE" \
- #   org.opencontainers.image.url="https://lars.werner.no/" \
- #   org.opencontainers.image.source="https://github.com/large/hassio-addons" \
- #   org.opencontainers.image.documentation="https://github.com/large/hassio-addons/blob/master/squeezelite/DOCS.md" \
- ##   org.opencontainers.image.created=${BUILD_DATE} \
-  #  org.opencontainers.image.revision=${BUILD_REF} \
- #   org.opencontainers.image.version=${BUILD_VERSION}
-
 
 #ENTRYPOINT ["/run-squeezelite.sh"]
