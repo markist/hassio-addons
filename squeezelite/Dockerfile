@@ -54,10 +54,16 @@ COPY /bin/${BUILD_ARCH}/* /tmp/squeezelitetemp/
 #Extract file and copy it
 RUN	cd /tmp/squeezelitetemp && \
 	tar -xvzf /tmp/squeezelitetemp/*.tar.gz && \
-    if [ "${BUILD_ARCH}" = "armhf" ]; \
-    then ln -s /usr/bin/squeezelite /usr/local/bin/squeezelite; \
-    else mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
+    if [ "${BUILD_ARCH}" = "armhf" ]; then ln -s /usr/bin/squeezelite /usr/local/bin/squeezelite; && \
+    else \
+    mv /tmp/squeezelitetemp/squeezelite /usr/local/bin/squeezelite && \
+    fi && \
+    if [ "${BUILD_ARCH}" = "armhf" ]; echo "armhf" && \
+    else \
 	chmod a+x /usr/local/bin/squeezelite && \
+    fi && \
+    if [ "${BUILD_ARCH}" = "armhf" ]; echo "armhf" && \
+    else \
 	chown root:root /usr/local/bin/squeezelite && \
     fi && \
 	if [ "${BUILD_ARCH}" = "aarch64" ]; then dpkg -i libc6_2.29-0ubuntu2_arm64.deb; fi && \
