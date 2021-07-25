@@ -18,6 +18,19 @@ ENV SQUEEZELITE_SPECIFY_SERVER no
 ENV SQUEEZELITE_SERVER_PORT server:3483
 
 
+# Set correct environment variables
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV LC_ALL="C.UTF-8" 
+ENV LANG="en_US.UTF-8" 
+ENV LANGUAGE="en_US.UTF-8" 
+
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
+
+
 # Labels
 LABEL \
     io.hass.name="Squeezelite" \
